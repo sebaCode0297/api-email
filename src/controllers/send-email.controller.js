@@ -9,6 +9,7 @@ async function sendEmail(req, res) {
       name: req.body.name,
       lastName: req.body.lastName
     };
+    console.log('data:', data);
     await sendEmailModule(data);
     return res.status(200).json({ message: "OK" });
   } catch (error) {

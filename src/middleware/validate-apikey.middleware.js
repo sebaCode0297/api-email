@@ -1,6 +1,7 @@
 const environment = require("../config/env");
 
 const validateApiKey = (req, res, next) => {
+  console.log(req.headers);
   const { authorization } = req.headers;
   console.log(`[validateApiKey]: authorization: ${authorization} APIKEY: ${environment.APIKEY}`);
   if (authorization === environment.APIKEY) next();
@@ -8,5 +9,5 @@ const validateApiKey = (req, res, next) => {
 };
 
 module.exports = {
-    validateApiKey
-}
+  validateApiKey
+};

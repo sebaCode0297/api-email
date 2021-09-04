@@ -1,11 +1,12 @@
 "use strict";
 
 const nodemailer = require("nodemailer");
-const environment = require('../config/env');
+const environment = require("../config/env");
 
 async function sendEmailService(data) {
   try {
     const { to, name, lastName } = data;
+
     let smtpTransport = nodemailer.createTransport({
       service: environment.SERVICE,
       auth: {
@@ -27,7 +28,7 @@ async function sendEmailService(data) {
     return info.messageId;
   } catch (error) {
     console.error(error);
-    throw new Error(`[sendEmail]: Se produjo un error al envia correo ${JSON.stringify(error)}`);
+    throw new Error(`[sendEmail]: Se produjo un error al enviar correo ${JSON.stringify(error)}`);
   }
 }
 

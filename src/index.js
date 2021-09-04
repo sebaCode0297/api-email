@@ -1,7 +1,6 @@
 "use strict";
 
 const express = require("express");
-const cors = require("cors");
 const router = require("./routes/index");
 const environment = require('./config/env');
 

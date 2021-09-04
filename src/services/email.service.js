@@ -1,15 +1,16 @@
 "use strict";
 
 const nodemailer = require("nodemailer");
+const environment = require('../config/env');
 
 async function sendEmailService(data) {
   try {
     const { to, name, lastName } = data;
     let smtpTransport = nodemailer.createTransport({
-      service: "Gmail",
+      service: environment.SERVICE,
       auth: {
-        user: "bodacamilaysebastian@gmail.com",
-        pass: "b0Da2o2i.C&$!"
+        user: environment.AUTH_USER,
+        pass: environment.AUTH_PASS
       }
     });
 

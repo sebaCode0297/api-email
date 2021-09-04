@@ -1,5 +1,5 @@
 "use strict";
 
 module.exports = (req, res) => {
-    return res.send('OK');
-}
+  return res.status(200).json({ message: "OK" });
+};

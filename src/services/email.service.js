@@ -5,7 +5,7 @@ const environment = require("../config/env");
 
 async function sendEmailService(data) {
   try {
-    const { to, name, lastName } = data;
+    const { to, name, lastName, state } = data;
 
     let smtpTransport = nodemailer.createTransport({
       service: environment.SERVICE,
@@ -18,9 +18,10 @@ async function sendEmailService(data) {
     let info = await smtpTransport.sendMail({
       from: '"BodaC&S" <no-replay@bodacys.cl>',
       to,
-      subject: "Confirmación de asistencia",
-      text: `¡${name} ${lastName} gracias por confirmar tu asistencia!, te esperamos en este día tan especial.`,
-      html: `¡${name} ${lastName} gracias por confirmar tu asistencia!, te esperamos en este día tan especial.<br><br>Ingrese al link para verificar la ubicación del Centro de eventos https://boda-syc.herokuapp.com/#when-where-section`
+      subject: state === "confirmado" ? "Confirmación de asistencia" : "Denegación de asistencia",
+      text: `¡${name} ${lastName} ${state === "confirmado" ? "Confirmo su asistencia" : "Denego su asistencia"}!`,
+      html: `¡${name} ${lastName} ${state === "confirmado" ? "Confirmo su asistencia" : "Denego su asistencia"}!`,
+      // `te esperamos en este día tan especial.<br><br>Ingrese al link para verificar la ubicación del Centro de eventos https://boda-syc.herokuapp.com/#when-where-section`
     });
 
     console.log("Message sent: %s", info.messageId);

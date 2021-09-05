@@ -7,7 +7,8 @@ async function sendEmail(req, res) {
     const data = {
       to: req.body.to,
       name: req.body.name,
-      lastName: req.body.lastName
+      lastName: req.body.lastName,
+      state: req.body.state
     };
     console.log('data:', data);
     await sendEmailModule(data);
